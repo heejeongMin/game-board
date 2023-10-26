@@ -1,5 +1,5 @@
 name: Game Board CICD
-run-name: ${{ github.actor }} is working on game board 🚀
+run-name: ${{ github.actor }} - ${{ github.event.head_commit.message }} 🚀
 on: [push]
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Package
-          path: /build/libs
+          path: ${{ github.workspace }}/build/libs
 
   publish:
     name: Build docker Image and push

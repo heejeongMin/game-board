@@ -20,6 +20,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - run: echo "test ${{steps.login-ecr.ouputs.registry}}"
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.ouputs.registry }}

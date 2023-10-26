@@ -23,6 +23,7 @@ jobs:
 
   publish:
     name: Build docker Image and push
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Check out code

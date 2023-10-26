@@ -7,21 +7,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
-        run: echo "check out code"
+        uses:
+          actions/checkout@v3
+          echo "build and push"
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses:
+          aws-actions/configure-aws-credentials@v4
+          echo "Configure AWS credentials"
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-north-2
-        run: echo "Configure AWS credentials"
 
       - name : Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@2
-        run: echo "Login to Amazon ECR"
+        uses:
+          aws-actions/amazon-ecr-login@2
+          echo "Login to Amazon ECR"
 
       - name: Build, tag, and push image to Amazon ECR
         env:

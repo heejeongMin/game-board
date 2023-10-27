@@ -19,7 +19,6 @@ jobs:
           arguments: build
       - uses: actions/upload-artifact@v3
         with:
-#          name: Package
           path: ${{ github.workspace }}/build/libs
 
   publish:
@@ -54,3 +53,15 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+  deploy:
+    name: Deploy pod to cluster
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: jtalk/k8s-deploy@v2
+        with:
+          namespace: 'game-board'
+          manifests: |
+            deployment.yaml

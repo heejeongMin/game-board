@@ -62,11 +62,9 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Set Kubernetes Context
-        uses: azure/k8s-set-context@v1
-        with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG }}
-
-      - name: Deploy to Cluster
+      - name: Update kubeconfig
         run: |
-          kubectl apply -f kubernetes/deployment.yaml
+          aws eks update-kubeconfig --region ap-northeast-2 --name game-board
+
+      - name: Deploy
+        run: kubectl apply -f kubernetes/deployment.yaml

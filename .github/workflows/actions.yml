@@ -71,7 +71,7 @@ jobs:
 
       - name: Update kubeconfig
         run: |
-          aws eks update-kubeconfig --region ap-northeast-2 --name game-board
+          aws eks update-kubeconfig --region ap-northeast-2 --name pancho
 
       - name: Deploy
         run: kubectl apply -f kubernetes/deployment.yaml

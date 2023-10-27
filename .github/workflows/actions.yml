@@ -61,18 +61,15 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+
       - name: Set Kubernetes Context
         uses: azure/k8s-set-context@v1
         with:
-          method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
       - name: Display structure
         run: ls -R
 
       - name: Deploy to Cluster
-        uses: azure/k8s-deploy@v4
-        with:
-          namespace: 'game-board'
-          manifests: |
-            kubernetes/deployment.yaml
+        run: |
+          kubectl apply -f kubernetes/deployment.yaml

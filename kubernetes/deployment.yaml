@@ -14,11 +14,11 @@ spec:
         app: game-board
     spec:
       containers:
-        - name: game-board
-          image: 112536949556.dkr.ecr.ap-northeast-2.amazonaws.com/game-board:SNAPSHOT
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
-            ports:
-              - containerPort: 8080
+      - name: game-board
+        image: 112536949556.dkr.ecr.ap-northeast-2.amazonaws.com/game-board:SNAPSHOT
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

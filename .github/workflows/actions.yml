@@ -62,24 +62,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
       - name: Set Kubernetes Context
         uses: azure/k8s-set-context@v1
         with:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
-
-      - name: Display structure
-        run: ls -R
 
       - name: Deploy to Cluster
         run: |

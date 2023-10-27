@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-board-deployment
+  labels:
+    app: game-board
+spec:
+  selector:
+    matchLabels:
+      app: game-board
+  template:
+    metadata:
+      labels:
+        app: game-board
+    spec:
+      containers:
+      - name: game-board
+        image: 112536949556.dkr.ecr.ap-northeast-2.amazonaws.com/game-board:SNAPSHOT
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

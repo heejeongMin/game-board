@@ -66,9 +66,13 @@ jobs:
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+      - name: Display structure
+        run: ls -R
+
       - name: Deploy to Cluster
         uses: azure/k8s-deploy@v4
         with:
           namespace: 'game-board'
           manifests: |
-            deployment.yaml
+            kubernetes/deployment.yaml

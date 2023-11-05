@@ -8,6 +8,5 @@ import org.springframework.boot.runApplication
 class BoardApplication
 
 fun main(args: Array<String>) {
-	println("test 1")
 	runApplication<BoardApplication>(*args)
 }

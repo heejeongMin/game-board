@@ -60,6 +60,7 @@ jobs:
           IMAGE_TAG: SNAPSHOT
         run: |
           docker build -t game-board .
+          docker tag game-board:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   deploy:

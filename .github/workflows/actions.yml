@@ -57,7 +57,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: game-board
-          IMAGE_TAG: 0.0.2
+          IMAGE_TAG: 0.0.3
         run: |
           docker build -t game-board .
           docker tag game-board $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

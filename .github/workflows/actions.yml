@@ -1,5 +1,5 @@
 name: Game Board CICD
-run-name: ${{ github.actor }} - ${{ github.event.head_commit.message }} 🚀
+run-name: ${{ github.actor }} / ${{ github.head_ref }} - ${{ github.event.head_commit.message }} 🚀
 on: [push]
 jobs:
   build:
@@ -49,6 +49,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: artifact
+
+      - name: Display structure of downloaded files
+        run: ls -R
 
       - name: Build, tag, and push image to Amazon ECR
         env:

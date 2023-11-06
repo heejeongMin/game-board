@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.pancho"
-version = "0.0.11-SNAPSHOT"
+version = "0.0.12-SNAPSHOT"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_17

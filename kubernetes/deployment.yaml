@@ -17,9 +17,5 @@ spec:
       containers:
       - name: game-board
         image: 112536949556.dkr.ecr.ap-northeast-2.amazonaws.com/game-board:0.0.12
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8080

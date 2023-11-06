@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout project sources
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
       - uses: actions/setup-java@v3
         with:
           java-version: '17'
@@ -57,11 +59,17 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: game-board
-          IMAGE_TAG: SNAPSHOT
+          IMAGE_TAG: 0.0.12
         run: |
-          docker build -t game-board:0.1 .
-          docker tag game-board:0.1 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build -t game-board .
+          docker tag game-board:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+#          docker buildx build --platform linux/amd64,linux/arm64 -t game-board .
+#          docker buildx build --platform linux/amd64 --load --tag 12536949556.dkr.ecr.ap-northeast-2.amazonaws.com/game-board:1.0.0 .
+#          docker push 112536949556.dkr.ecr.ap-northeast-2.amazonaws.com/game-board:latest
+
+
 
   deploy:
     name: Deploy pod to cluster
